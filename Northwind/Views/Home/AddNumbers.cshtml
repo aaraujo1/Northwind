@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "AddNumbers";
+}
+<h3>A: @ViewBag.a</h3>
+<h3>B: @ViewBag.b</h3>
+<h3>C: @ViewBag.c</h3>
+
+<h2>@ViewBag.Total</h2>
+<form role="form" method="post" action="@Url.Action("AddNumbers","Home")">
+    <div class="form-group">
+        @Html.Label("num1", "First number")
+        <!-- textbox name, value, HTML attribute
+                use at symbol to use a reserved word
+        -->
+        @Html.TextBox("num1", null, new { @class = "form-control" })
+        <!--<label for="num1">First number</label>
+        <input type="text" class="form-control" id="num1" name="num1">-->
+    </div>
+    <div class="form-group">
+        @Html.Label("num2", "Second number")
+        @Html.TextBox("num2", null, new { @class = "form-control" })
+        <!--<label for="num2">Second number</label>
+        <input type="text" class="form-control" id="num2" name="num2">-->
+    </div>
+
+    <div class="form-group">
+        @Html.Label("num3", "Third number")
+        @Html.TextBox("num3", null, new { @class = "form-control" })
+    </div>
+
+
+
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+

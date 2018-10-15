@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title></title><!-- style sheer -->
+    <link href="../Content/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../Content/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="../Content/animate.css" rel="stylesheet" type="text/css">
+    <link href="../Content/site.css" rel="stylesheet" type="text/css"><!-- javascript add at bottom of body for DOM to load first -->
+    <!-- async loads it as the page is load because modern browsers can handle it better
+        defer is the opposite
+        -->
+
+    <script src="../Content/jquery-3.3.1.min.js" type="text/javascript">
+</script>
+    <script src="../Content/bootstrap.min.js" type="text/javascript">
+</script>
+    <script src="../Content/jquery-ui.min.js" type="text/javascript">
+</script>
+    <script type="text/javascript">
+$(function(){
+        //do this
+        //alert("Hello!");
+        $('#birthday').datepicker();
+        $('.ball').draggable();
+        
+        //$('h1').addClass('animated bounce');
+        
+        $('.bx').each(function(){
+	        //true of false
+	        $(this).is(':checked') ? 
+	        	$('#' + $(this).attr('id') + 'Img').css('visibility', 'visible') :
+				$('#' + $(this).attr('id') + 'Img').css('visibility', 'hidden')
+        });
+        
+        $('.bx').change(function(){
+	        $('#' + $(this).attr('id') + 'Img').css('visibility', 'visible');
+	        $(this).is(':checked') ?
+	        	$('#' + $(this).attr('id') + 'Img').removeClass().addClass('animated bounceInUp') :
+	        	$('#' + $(this).attr('id') + 'Img').removeClass().addClass('animated bounceOutUp')
+        });
+        
+        //animations
+        var animations = ["bounce","flash","pulse","rubberBand","shake","swing","tada","wobble"];
+        
+        //random number
+		var rand = Math.floor(Math.random() * 8); //from 0–7
+        
+        //#FF3D00 /* Deep Orange A400 (material design colors) */
+        $('h1').addClass('animated ' + animations[rand]);
+        
+        
+    });
+
+    /*
+    $(document).ready(function(){
+        //do this
+        alert("Hello!");
+    })
+    */
+
+    </script>
+</head>
+
+<body>
+    <!-- navbar -->
+    <!-- navbar-default defines the looks and structure -->
+    <!-- navbar-fixed afixes the bar to the top -->
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <!-- in a container -->
+
+        <div class="container">
+            <!-- brand/logo -->
+
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Northwind</a>
+            </div><!-- to collapse menu -->
+
+            <div class="collapse navbar-collapse" id="collapse-menu">
+                <!-- navbar style on the right -->
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <!-- toggle class with a data-toggle from jquery
+        caret needs to be inline without anything between brackets-->
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products</a> <!-- dropdown menu functionality  -->
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Browse Categories</a></li>
+
+                            <li><a href="#">Product Search</a></li>
+
+                            <li><a href="#">Current Discounts</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <!-- toggle class with a data-toggle from jquery
+        caret needs to be inline without anything between brackets-->
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Customers</a> <!-- dropdown menu functionality  -->
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Sign In</a></li>
+
+                            <li><a href="#">Register</a></li>
+
+                            <li><a href="#">Your Account</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-left hidden-xs">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Product Search">
+                    </div><button type="submit" class="btn btn-default">Submit</button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><!-- toggle class with a data-toggle from jquery
+        caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav><!-- Main -->
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>All About Cars!!</h1>
+
+            <p>This is a site all about cars and cars things and car accessories.</p><button class="btn btn-info">Zoom Zoom</button>
+        </div>
+
+        <div class="container">
+            <h1 class="animated bounce">Happy Birthday!</h1>
+            <hr>
+
+            <form role="form">
+                <div class="row">
+	                <!-- DataEntry -->
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        </div><label for="name">Name</label> <input type="text" id="name" class="form-control">
+
+                    <div class="form-group">
+                        <label for="birthday">Birthday</label> <input type="text" id="birthday" class="form-control">
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Select your favorite balloons</strong></h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="bx" id="rb">Red Balloons</label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="bx" id="gb">Green Balloons</label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="bx" id="pb">Purple Balloons</label>
+                            </div>
+                        </div>
+                    </div><button type="button" class="btn btn-default">Submit</button>
+                </div>
+                <!-- Balloons -->
+
+                <div class="col-sm-6"></div><img src="../Content/resources/images/red.png" class="ball" id="rbImg"> <img src="../Content/resources/images/green.png" class="ball" id="gbImg"> <img src="../Content/resources/images/purple.png" class="ball" id="pbImg"></div>
+            </form><br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div><!-- Grid system -->
+        <!--
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6" style="text-align: center">
+                    <h3>Learn to Drive Slow</h3>
+                    <p>The gas pedal is your friend.</p>
+                    <button type="button" class="btn btn-default">Learn</button>
+                </div>
+                <div class="col-md-4 col-sm-6" style="text-align: center">
+                    <h3>Learn to Use Your Blinker</h3>
+                    <p>Indicate</p>
+                    <button type="button" class="btn btn-default">Learn</button>
+                </div>
+                <div class="col-md-4 col-sm-12" style="text-align: center">
+                    <h3>Learn to Stop</h3>
+                    <p>The brake pedal is your friend.</p>
+                    <button type="button" class="btn btn-default">Learn</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+        <!-- navbar footer -->
+
+        <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <p class="navbar-text">MVC</p><button type="button" class="btn btn-warning btn-info navbar-btn pull-right" data-toggle="modal" data-target="#modal-area">Modal <button type="button" class="btn btn-primary btn-info navbar-btn pull-right">Cool</button></button>
+            </div>
+        </nav>
+
+        <div id="modal-area" class="modal">
+            This is a modal
+        </div>
+    </div>
+</body>
+</html>

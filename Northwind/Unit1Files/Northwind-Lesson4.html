@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Northwind</title>
+    <!-- style sheer -->
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    
+    <link href="../Content/site.css" rel="stylesheet" />
+    <!-- javascript add at bottom of body for DOM to load first -->
+    <!-- async loads it as the page is load because modern browsers can handle it better
+        defer is the opposite
+        -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="../Content/popper.min.js" defer></script>
+    <script src="../Content/bootstrap.min.js" defer></script>
+    <script src="../Content/site.js"></script>
+    
+</head>
+<body>
+    <!-- navbar -->
+    <!-- navbar-default defines the looks and structure -->
+    <!-- navbar-fixed afixes the bar to the top -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <!-- in a container -->
+        <div class="container">
+            <!-- brand/logo -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-menu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand"><i class="fas fa-home"></i> Home</a>
+            </div>
+            <!-- to collapse menu -->
+            <div class="collapse navbar-collapse" id="collapse-menu">
+                <!-- navbar style on the right -->
+                <ul class="nav navbar-nav">
+                      <li>
+                        <!-- toggle class with a data-toggle from jquery
+        caret needs to be inline without anything between brackets-->
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-list"></i> Products<b class="caret"></b></a>
+                        <!-- dropdown menu functionality  -->
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Browse Categories</a></li>
+
+                            <li><a href="#">Product Search</a></li>
+
+							<li class="divider"></li>
+
+                            <li><a href="#">Current Discounts</a></li>
+                        </ul>
+                    </li>
+                    
+                     <li>
+                        <!-- toggle class with a data-toggle from jquery
+        caret needs to be inline without anything between brackets-->
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-users"></i> Customers<b class="caret"></b></a>
+                        <!-- dropdown menu functionality  -->
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Sign In</a></li>
+
+                            <li><a href="#">Register</a></li>
+
+							<li class="divider"></li>
+
+                            <li><a href="#">Your Account</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+                    
+                    <form class="navbar-form navbar-left hidden-xs">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Product Search">
+      </div>
+      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+    </form>
+                    
+                    
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <!-- toggle class with a data-toggle from jquery
+        caret needs to be inline without anything between brackets-->
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                        
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <div class="container">
+        <div class="jumbotron">
+            <h1>N<i class="far fa-compass" style="font-size: 40px;"></i>rthwind</h1>
+            <p>We have the best prices and selection of high quality foods & beverages on the planet! Check out our features discount below.</p>
+            <button class="btn btn-primary">Place your order now</button>
+        </div>
+        <!-- Grid system -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <h3>Tis the Season</h3>
+                    <p>Order today! Save 12.5% on the Chef Anton’s Italian Seasoning. You don’t want to make Chef Anton mad, do you?d.</p>
+                    <p>Discount Expires 12/14/2018</p>
+					<p><a href="#" data-toggle="popover" data-placement="right" data-content="1515" style="text-decoration: none"><i class="far fa-hand-point-right"></i>Discount Code</a></p>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <h3>Go Green</h3>
+                    <p>Genen Shouyu goes on sale very rarely. Order now to save 10% off out already low price.</p>
+                    <p>Discount Expires 12/14/2018</p>
+					<p><a href="#" data-toggle="popover" data-placement="right" data-content="1515" style="text-decoration: none"><i class="far fa-hand-point-right"></i>Discount Code</a></p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <h3>Half Price</h3>
+                    <p>Just because you can’t pronounce “Schoggi Schokolade” doesn’t mean you shouldn’t buy it. Get it now for 50% off!</p>
+                    <p>Discount Expires 12/14/2018</p>
+					<p><a href="#" data-toggle="popover" data-placement="right" data-content="1515" style="text-decoration: none"><i class="far fa-hand-point-right"></i>Discount Code</a></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- navbar footer -->
+<!--
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text">MVC<span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true">
+</span></p>
+
+            <button type="button" class="btn btn-warning btn-info navbar-btn pull-right" data-toggle="modal" data-target="#modal-area">Modal
+                <span class="glyphicon glyphicon-modal-window" aria-hidden="true">
+            </button>
+            <button type="button" class="btn btn-primary btn-info navbar-btn pull-right">
+                <span class="glyphicon glyphicon-sunglasses" aria-hidden="true">
+                    </span> Cool
+            </button>
+        </div>
+    </nav>
+    <div id="modal-area" class="modal">
+        This is a modal
+    </div>
+-->
+
+
+</body>
+</html>

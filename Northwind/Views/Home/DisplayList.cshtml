@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "DisplayList";
+}
+ViewBag.Names
+<h2>DisplayList</h2>
+
+<h3>List of Names</h3>
+
+<ul>
+    @{
+        foreach (var names in ViewBag.Names)
+        {
+            <li>@names</li>
+        }
+    }
+</ul>
+
