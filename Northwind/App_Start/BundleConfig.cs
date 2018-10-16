@@ -23,8 +23,22 @@ namespace Northwind
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                
+                "~/Content/css/bootstrap.min.css",
+                "~/Content/css/bootstrap-theme.min.css",
+                      
+                "~/Content/css/jquery-ui.min.css",
+                "~/Content/css/animate.css",
+
+                      "~/Content/css/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/js").Include(
+                "~/Content/js/bootstrap.min.js",
+                "~/Content/js/jquery-3.3.1.min.js",
+                "~/Content/js/jquery-ui.min.js",
+                "~/Content/js/npm.js",
+                "~/Content/js/popper.js",
+                "~/Content/js/site.js"));
         }
     }
 }
