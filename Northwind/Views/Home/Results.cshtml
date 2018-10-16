@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+<div class="col-sm-6">
+    Thanks @ViewBag.ResultName <br />
+    Your birthday is @ViewBag.ResultBD
+
+    You have selected the following balloons:
+    <ul>
+        @{
+
+            foreach (var balloon in ViewBag.cart)
+            {
+                <li style="color:@balloon">@balloon balloon</li>
+            }
+
+        }
+    </ul>
+    </div>
+<div class="col-sm-6" style="text-align:center;">
+    @{
+        foreach (var balloon in ViewBag.cart)
+        {
+            string imagename = "../Content/" + balloon + ".png";
+            string id = balloon + "Img";
+            <img src="@imagename" alt="@balloon" class="ball" id="@id" />
+        }
+    }
+</div>

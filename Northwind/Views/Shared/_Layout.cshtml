@@ -65,16 +65,7 @@ true" aria-expanded="false">
                         </ul>
                     </li>
 
-                    <li>@Html.ActionLink("Add Numbers", "AddNumbers", "Home")</li>
-
-                    <li>@Html.ActionLink("Display List", "DisplayList", "Home")</li>
-
-                    <li>@Html.ActionLink("Stuff", "Stuff", "Home")</li>
-
-
-
                     <!--<li>Html.ActionLink("Customer", "Customer", "Customer")</li>-->
-
 
                     <li>
                         <!-- toggle class with a data-toggle from jquery
@@ -108,8 +99,13 @@ true" aria-expanded="false">
                             <li>Lesson 9 HW - Customer</li>
 
 
-                            <li><a href="Northwind-Lesson4.html">Lesson 10</a></li>
-                            <li><a href="Northwind-Lesson5.html">Lesson 11</a></li>
+                            <li>@Html.ActionLink("Lesson 10 Lab - Stuff", "Stuff", "Home")</li>
+                            <li>@Html.ActionLink("Lesson 10 Lab - Add Number", "AddNumbers", "Home")</li>
+                            <li>@Html.ActionLink("Lesson 10 Lab - Display List", "DisplayList", "Home")</li>
+
+                            <li>@Html.ActionLink("Lesson 11 - Colors", "PrimaryColor", "Color")</li>
+                            <li>@Html.ActionLink("Lesson 12 - Form Data - Balloons", "Birthday", "Home")</li>
+
                         </ul>
                     </li>
                 </ul>
@@ -124,8 +120,8 @@ true" aria-expanded="false">
         </footer>*@
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

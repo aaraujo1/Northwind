@@ -9,7 +9,7 @@ namespace Northwind.Controllers
     public class ColorController : Controller
     {
         // GET: Color
-        public ActionResult Index()
+        public ActionResult PrimaryColor(string color1, string color2)
         {
             return View();
         }
