@@ -159,6 +159,7 @@
     <Compile Include="Models\Birthday.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +232,7 @@
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <None Include="Properties\PublishProfiles\wctc-aaraujo1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\wctc-aaraujo1 - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -281,6 +283,8 @@
     <Content Include="Views\Home\Birthday.cshtml" />
     <Content Include="Views\Home\DisplayProducts.cshtml" />
     <Content Include="Views\Home\Results.cshtml" />
+    <Content Include="Views\Home\GetProduct.cshtml" />
+    <Content Include="Views\Home\ProcessOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,7 +22,7 @@ namespace Northwind
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/cssFiles").Include(
                 
                 "~/Content/css/bootstrap.min.css",
                 "~/Content/css/bootstrap-theme.min.css",
@@ -32,7 +32,7 @@ namespace Northwind
 
                       "~/Content/css/site.css"));
 
-            bundles.Add(new ScriptBundle("~/Content/js").Include(
+            bundles.Add(new ScriptBundle("~/Content/jsFiles").Include(
                 "~/Content/js/bootstrap.min.js",
                 "~/Content/js/jquery-3.3.1.min.js",
                 "~/Content/js/jquery-ui.min.js",

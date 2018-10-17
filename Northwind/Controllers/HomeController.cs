@@ -136,5 +136,91 @@ namespace HTMLHelpers.Controllers
                 return true;
             return false;
         }
+
+        //this would be in different classes
+        //public interface IContext { }
+
+        //public class ProductContext : IContext
+        //{
+
+        //}
+
+        //                                  (int id)
+        public ActionResult DisplayProducts()
+        {
+            //ViewBag.ProductList = Products;
+
+            //pass in model to view
+            //this is bad and hard to test because it's instantiating in the method
+            //it's the dependant on a class
+            ProductContext p = new ProductContext();
+
+            //DatebaseContext db = GetAllDataById(id);
+
+            //var products = p.GetAll();
+
+            //return View(p.GetAll());
+
+            var products = p.GetAll();
+
+            return View(products);
+
+        }
+
+        public ActionResult GetProduct()
+        {
+            //it's the dependant on a class
+            ProductContext p = new ProductContext();
+            Product product = p.Find("100");
+
+            return View(product);
+        }
+
+        public ActionResult ProcessOrder(FormCollection form)
+        {
+            List<Order> orders = new List<Order>();
+
+            //we have acces to the form
+            //better than form[p.Id]
+
+
+            ProductContext productContext = new ProductContext();
+            //List<Product> products = productContext.GetAll();
+
+            Int16 qty;
+
+            foreach (var key in form.AllKeys)
+            {
+                //not all
+                //if 0
+                if (Int16.TryParse(form[key], out qty) && qty > 0)
+                {
+                    //orders.Add(new Order { ProductKey = key, Qty = qty });
+                    var p = productContext.Find(key);
+                    orders.Add(new Order { Prod = p, Qty = qty });
+                }
+            }
+
+
+            //it's the dependant on a class
+            /*ProductContext productContext = new ProductContext();
+            List<Product> products = productContext.GetAll();
+
+            
+
+            foreach (var p in products)
+            {
+                if(Int16.TryParse(form[p.Id], out qty) && qty > 0)
+                {
+                    orders.Add(new Order { Prod = p, Qty = qty });
+                }
+
+                //int qty = Convert.ToInt16(form[p.Id]);
+                //orders.Add(new Order { Prod = p, Qty = qty });
+
+            }
+            */
+            return View(orders);
+        }
     }
 }
