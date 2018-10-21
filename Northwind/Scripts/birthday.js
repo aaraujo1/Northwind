@@ -1,6 +1,7 @@
 ﻿$(function () {
     // make balloon draggable
     $(".ball").draggable({ appendTo: "body" });
+    
 
     // attach datepicker to textbox
     $('#birthday').datepicker({ dateFormat: "mm-dd" });
@@ -18,13 +19,34 @@
             $('#' + $(this).attr('id') + 'Img').css('visibility', 'hidden')
     });
 
+    $('.bx').click(function (idx) {
+        $(this).is('visible') ?
+            $('#' + $(this).attr('id') + 'Img').css('visibility', 'visible') :
+            $('#' + $(this).attr('id') + 'Img').css('visibility', 'hidden')
+    });
+
     // attach event listener to checkboxes
     $('.bx').change(function (e) {
         // make the image visible
         $('#' + $(this).attr('id') + 'Img').css('visibility', 'visible');
         // animate balloon In/Out based on checkbox
         $(this).is(':checked') ?
-            $('#' + $(this).attr('id') + 'Img').removeClass().addClass('animated bounceInDown') :
+            $('#' + $(this).attr('id') + 'Img').removeClass().addClass('animated bounceInUp') :
             $('#' + $(this).attr('id') + 'Img').addClass('animated bounceOutUp');
+    });
+
+    $('#checkAll').click(function () {
+        $('input:checkbox.bx').prop('checked', this.checked);
+
+        $('.bx').each(function (idx) {
+            // make the image visible
+            $('#' + $(this).attr('id') + 'Img').css('visibility', 'visible');
+            // animate balloon In/Out based on checkbox
+            $(this).is(':checked') ?
+                $('#' + $(this).attr('id') + 'Img').removeClass().addClass('animated bounceInUp') :
+                $('#' + $(this).attr('id') + 'Img').addClass('animated bounceOutUp');
+        });
+       
+        
     });
 });

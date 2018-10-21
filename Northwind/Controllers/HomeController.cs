@@ -95,18 +95,18 @@ namespace HTMLHelpers.Controllers
         [HttpPost]
         public ActionResult Birthday(FormCollection form)
         {
-            //List<string> balloonList = new List<string>();
+            List<string> balloonList = new List<string>();
 
             //The Post - after form submitted
             //ViewBag.balloons = balloons;
             @ViewBag.ResultName = form["name"];
             @ViewBag.ResultBD = form["birthday"];
 
-            var balloons = form.AllKeys.Where(k => k.StartsWith("balloon")).Select(k => form[k]);
+
 
             //from lesson 12
             //keys are from the array list we have
-            /*
+            
             foreach (var balloon in balloons)
             {
                 var b = form[balloon].Split(',');
@@ -117,14 +117,16 @@ namespace HTMLHelpers.Controllers
                     balloonList.Add(balloon); //add name of balloon
                 }
             }
-            ViewBag.BalloonList = balloonList;
-            */
+            //ViewBag.BalloonList = balloonList;
+            
             //ViewBag.BalloonList = balloons;
 
 
-            ViewBag.cart = balloons;
+            //var balloons = form.AllKeys.Where(k => k.StartsWith("balloon")).Select(k => form[k]);
 
+            //ViewBag.cart = balloons;
 
+            ViewBag.cart = balloonList;
 
 
             return View("Results");
