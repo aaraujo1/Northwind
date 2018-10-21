@@ -1,4 +1,4 @@
-﻿using HTMLHelpers.Models;
+﻿using Northwind.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -152,7 +152,7 @@ namespace HTMLHelpers.Controllers
 
             //pass in model to view
             //this is bad and hard to test because it's instantiating in the method
-            //it's the dependant on a class
+            //it's the dependent on a class
             ProductContext p = new ProductContext();
 
             //DatebaseContext db = GetAllDataById(id);
@@ -183,11 +183,11 @@ namespace HTMLHelpers.Controllers
             //we have acces to the form
             //better than form[p.Id]
 
-
-            ProductContext productContext = new ProductContext();
-            //List<Product> products = productContext.GetAll();
-
             Int16 qty;
+            /*ProductContext productContext = new ProductContext();
+            List<Product> products = productContext.GetAll();
+
+            
 
             foreach (var key in form.AllKeys)
             {
@@ -199,11 +199,11 @@ namespace HTMLHelpers.Controllers
                     var p = productContext.Find(key);
                     orders.Add(new Order { Prod = p, Qty = qty });
                 }
-            }
+            }*/
 
 
             //it's the dependant on a class
-            /*ProductContext productContext = new ProductContext();
+            ProductContext productContext = new ProductContext();
             List<Product> products = productContext.GetAll();
 
             
@@ -219,7 +219,7 @@ namespace HTMLHelpers.Controllers
                 //orders.Add(new Order { Prod = p, Qty = qty });
 
             }
-            */
+            
             return View(orders);
         }
     }

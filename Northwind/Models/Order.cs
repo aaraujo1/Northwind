@@ -1,10 +1,10 @@
-﻿using HTMLHelpers.Models;
+﻿using Northwind.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace HTMLHelpers.Models
+namespace Northwind.Models
 {
     //public class Cart
     public class Order

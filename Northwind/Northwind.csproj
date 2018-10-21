@@ -158,7 +158,9 @@
     </Compile>
     <Compile Include="Models\Birthday.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Unit2ProjectProductContext.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -285,6 +287,11 @@
     <Content Include="Views\Home\Results.cshtml" />
     <Content Include="Views\Home\GetProduct.cshtml" />
     <Content Include="Views\Home\ProcessOrder.cshtml" />
+    <Content Include="Views\Product\DisplayProducts.cshtml" />
+    <Content Include="Views\Product\GetProduct.cshtml" />
+    <Content Include="Views\Product\ProcessOrder.cshtml" />
+    <Content Include="Views\Product\Unit2Project.cshtml" />
+    <Content Include="Views\Product\Unit2ProjectProcessOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

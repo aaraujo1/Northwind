@@ -1,0 +1,151 @@
+﻿@using Northwind.Models
+@model IEnumerable<Northwind.Models.Product>
+
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>DisplayProducts</h2>
+
+
+<form action="@Url.Action("Unit2ProjectProcessOrder","Product")" method="post">
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>Quantity</th>
+            <th class="hidden">Total</th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td id="price_@item.Id">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    <input type="number" name="@item.Id" id="@item.Id" class="form-control qty" />
+                </td>
+
+                <td class="hidden" id="subtotal_@item.Id">0.00</td>
+
+            </tr>
+        }
+        <tfoot class="hidden">
+            <tr>
+                <th colspan="2">Total</th>
+                <th id="totalItems">0</th>
+                <th id="total">0.00</th>
+            </tr>
+        </tfoot>
+
+    </table>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                @Html.Label("name", "Name")
+                @Html.TextBox("name", null, new { placeholder = "Enter name", required = "required", @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="form-group">
+                @Html.Label("address", "Address")
+                @Html.TextBox("address", null, new { placeholder = "Enter address", required = "required", @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                @Html.Label("city", "City")
+                @Html.TextBox("city", null, new { placeholder = "Enter city", required = "required", @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                @Html.Label("state", "State")
+                @Html.TextBox("state", null, new { placeholder = "Enter state", required = "required", @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                @Html.Label("zip", "Zip")
+                @Html.TextBox("zip", null, new { placeholder = "Enter zip", required = "required", @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Order</button>
+</form>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
+    <script>
+        $(function () {
+            $("form").validate({
+                rules: {
+                    name: "required",
+                    address: "required",
+                    city: "required",
+                    state: "required",
+                    zip: "required"
+                },
+                messages: {
+                    name: "*Name is required",
+                    address: "*Address is required",
+                    city: "*City is required",
+                    state: "*State is required",
+                    zip: "*Zip is required"
+                }
+            });
+
+
+            $('.hidden').removeClass('hidden');
+
+            $('.qty').each(function () {
+                $('#' + this.id).val('0');
+            });
+
+            $('.qty').change(function () {
+                //html() is a getter
+                var qty = $('#' + this.id).val();
+                //alert(qty);
+                var price = $('#price_' + this.id).html();
+                //html(value) is a setter
+                //var subtotal =
+                $('#subtotal_' + this.id).html((qty * price).toFixed(2));
+
+                //TO CHANGE TOTAL
+                //1. iterate over all subtotals
+                //2. add, and
+                //3. display in the #total field
+                //#total.html(4999.97)
+                var total = 0;
+                var totalItems = 0;
+
+                $('.qty').each(function () {
+                    total += Number($('#subtotal_' + this.id).html());
+                    totalItems += Number($('#' + this.id).val());
+                });
+
+                $('#totalItems').html(totalItems);
+                $('#total').html(total.toFixed(2));
+            });
+
+
+
+
+
+        });
+    </script>
+}

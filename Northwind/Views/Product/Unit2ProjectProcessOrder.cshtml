@@ -1,0 +1,40 @@
+﻿@using Northwind.Models
+@model IEnumerable<Northwind.Models.Order>
+
+@{
+    ViewBag.Title = "Process Order";
+    double total = 0;
+}
+
+<h1>Process Order</h1>
+
+<ul>
+    @foreach (Order o in Model)
+    {
+        <li>@string.Format("{0} : {1}", @o.Prod.Name, @o.Qty)</li>
+
+
+        total += o.Prod.Price * o.Qty;
+    }
+</ul>
+<h3>
+    Order Total: @total.ToString("C")
+</h3>
+<!--
+
+Thanks for your order, Jeff. As soon as we receive your payment for $3.24, we will send 2 Cheese puff(s) and 2 Bacon(s) to: Jeff Grissom 123 Happy Street Milwaukee, WI 55555
+-->
+<div>
+    Thanks for your order,<b> @ViewBag.Name</b>! As soon as we receive your payment for <b>@total.ToString("C")</b>, we will send
+    
+    @foreach (Order o in Model)
+    {
+        <b>@string.Format("{0} {1}", @o.Qty, @o.Prod.Name)</b>
+
+    }
+
+    to:<br /><br />
+    @ViewBag.Name<br />
+    @ViewBag.Address<br />
+    @ViewBag.City, @ViewBag.State @ViewBag.Zip
+</div>
