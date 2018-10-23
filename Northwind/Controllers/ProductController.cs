@@ -113,8 +113,21 @@ namespace Northwind.Controllers
             return View(products);
         }
 
+        //public ActionResult Index(Product model)
+        //{
+        //    var items = // Your List of data
+        //        model.ListName = items.Select(x => new SelectListItem()
+        //        {
+        //            Text = x.prop,
+        //            Value = x.prop2
+        //        });
+        //}
+
+
         public ActionResult Unit2ProjectProcessOrder(FormCollection form)
         {
+            Data d = new Data();
+
             List<Order> orders = new List<Order>();
 
             Int16 qty;
@@ -149,6 +162,9 @@ namespace Northwind.Controllers
                 State = form["state"],
                 Zip = form["zip"]
             };
+
+            d.order = orders;
+            d.person = person;
 
             return View(orders);
         }

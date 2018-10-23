@@ -10,7 +10,7 @@ namespace Northwind.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-
+        //public string State { get; set; }
         //public Product()
         //{
 

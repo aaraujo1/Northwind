@@ -2,11 +2,12 @@
 @model IEnumerable<Northwind.Models.Product>
 
 
+
 @{
     ViewBag.Title = "Products";
 }
 
-<h2>DisplayProducts</h2>
+<h2>Products</h2>
 
 
 <form action="@Url.Action("Unit2ProjectProcessOrder","Product")" method="post">
@@ -51,34 +52,37 @@
         </tfoot>
 
     </table>
-    
+
     <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-sm-12">
                 @Html.Label("name", "Name")
                 @Html.TextBox("name", null, new { placeholder = "Enter name", required = "required", @class = "form-control" })
             </div>
+
         </div>
-        <div class="col-sm-9">
-            <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-sm-12">
                 @Html.Label("address", "Address")
                 @Html.TextBox("address", null, new { placeholder = "Enter address", required = "required", @class = "form-control" })
             </div>
+
         </div>
-        <div class="col-sm-4">
-            <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-sm-6">
                 @Html.Label("city", "City")
                 @Html.TextBox("city", null, new { placeholder = "Enter city", required = "required", @class = "form-control" })
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
+
+
+            <div class="form-group col-sm-4">
                 @Html.Label("state", "State")
                 @Html.TextBox("state", null, new { placeholder = "Enter state", required = "required", @class = "form-control" })
+                @*Html.DropDownListFor(x => x.State, StateHelper.States)*@
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
+
+
+            <div class="form-group col-sm-2">
                 @Html.Label("zip", "Zip")
                 @Html.TextBox("zip", null, new { placeholder = "Enter zip", required = "required", @class = "form-control" })
             </div>
