@@ -235,8 +235,10 @@
     <Content Include="Content\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\wctc-aaraujo1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wctc-aaraujo1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\wctc-aaraujo1 - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\wctc-aaraujo1 - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -294,6 +296,7 @@
     <Content Include="Views\Product\ProcessOrder.cshtml" />
     <Content Include="Views\Product\Unit2Project.cshtml" />
     <Content Include="Views\Product\Unit2ProjectProcessOrder.cshtml" />
+    <Content Include="Views\Product\Unit2ProjectShipping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
