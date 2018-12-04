@@ -18,6 +18,7 @@ namespace Northwind.Models
         public Product()
         {
             this.Order_Details = new HashSet<Order_Detail>();
+            this.Discounts = new HashSet<Discount>();
         }
     
         public int ProductID { get; set; }
@@ -35,5 +36,7 @@ namespace Northwind.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_Detail> Order_Details { get; set; }
         public virtual Supplier Supplier { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discount> Discounts { get; set; }
     }
 }

@@ -67,3 +67,13 @@ a:hover,a:active,a:focus,a:visited { outline: 0; }
 .error {
     color: red;
 }
+
+.product-row {
+    cursor: pointer;
+}
+
+.hr-special {
+    margin: 8px;
+}
+
+a.special { cursor: pointer; }

@@ -42,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -153,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BankController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -172,10 +176,17 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>NorthwindModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerEdit.cs" />
+    <Compile Include="Models\CustomerRegister.cs" />
+    <Compile Include="Models\CustomerSignIn.cs" />
     <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\Discount.cs">
+      <DependentUpon>NorthwindModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>NorthwindModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IController.cs" />
     <Compile Include="Models\NorthwindModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -365,9 +376,11 @@
     <Content Include="Views\Product\Unit2ProjectShipping.cshtml" />
     <Content Include="Views\Product\Categories.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Hello\" />
   </ItemGroup>
   <ItemGroup>

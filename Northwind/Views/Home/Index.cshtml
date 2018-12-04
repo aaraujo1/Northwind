@@ -1,15 +1,21 @@
-﻿@{
+﻿@using Northwind.Models
+@model IEnumerable<Discount>
+
+@{
     ViewBag.Title = "Home";
 }
 <div class="container">
     <div class="jumbotron">
         <h1>N<i class="far fa-compass" style="font-size: 40px;"></i>rthwind</h1>
-        <p> We have the best prices and selection of high quality foods & beverages on the  Planet. Check out our featured discounts below.</p>
-        <p><a href="#" class="btn btn-primary btn-lg">Place your order now &raquo;</a></p> 
+        <p> We have the best prices and selection of high quality foods & beverages on the Planet. Check out our featured discounts below.</p>
+        <p>
+            <a href="#" class="btn btn-primary btn-lg">Place your order now &raquo;</a>
+        </p>
     </div>
     <!-- Grid system -->
     <div class="container">
         <div class="row">
+            <!--
             <div class="col-md-4 col-sm-6">
                 <h3>Tis the Season</h3>
                 <p>Order today! Save 12.5% on the Chef Anton’s Italian Seasoning. You don’t want to make Chef Anton mad, do you?d.</p>
@@ -29,6 +35,31 @@
                 <p><a href="#" data-toggle="popover" data-placement="right" data-content="1515" style="text-decoration: none"><i class="far fa-hand-point-right"></i>Discount Code</a></p>
 
             </div>
+            -->
+            @foreach (Discount d in @Model)
+            {
+                <div class="col-sm-4">
+                    <h2 class="font-md">@d.Title</h2>
+                    <hr class="hr-special"/>
+                    <p>
+                        @d.Description
+                    </p>
+                    <p>
+                        <i>Discount Expires: @string.Format("{0:MM/dd/yyyy}", @d.EndTime)</i>
+                    </p>
+                    <a class="special" data-container="body" data-toggle="popover" dataplacement="right" data-content="@d.Code">
+                        <i class="fa fa-hand-o-right"></i> Discount Code
+                    </a>
+                </div>
+            }
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(function() {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script> 
+}

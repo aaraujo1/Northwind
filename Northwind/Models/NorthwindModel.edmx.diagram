@@ -25,6 +25,8 @@
         <AssociationConnector Association="NW_10098_AGAModel.FK_Products_Suppliers" ManuallyRouted="false" />
         <AssociationConnector Association="NW_10098_AGAModel.FK_Territories_Region" ManuallyRouted="false" />
         <AssociationConnector Association="NW_10098_AGAModel.EmployeeTerritories" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NW_10098_AGAModel.Discount" Width="1.5" PointX="5.25" PointY="19.25" />
+        <AssociationConnector Association="NW_10098_AGAModel.FK_Specials_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

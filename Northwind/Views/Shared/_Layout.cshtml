@@ -1,11 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
 
-    <link rel="icon" href="~/favicon.ico" />
+    <link rel="icon" href="~/favicon.ico"/>
 
     <title>@ViewBag.Title - Northwind</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -15,127 +15,177 @@
     @Scripts.Render("~/Content/jsFiles")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                <a href="~/Home/Index" class="navbar-brand"><i class="fa fa-home"></i> Home</a>
+            <a href="~/Home/Index" class="navbar-brand"><i class="fa fa-home"></i> Home</a>
 
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
 
-                    @*<li>
+                @*<li>
             @Html.ActionLink("About", "About", "Home")
         </li>
         <li>
                     @Html.ActionLink("Contact", "Contact", "Home")
                     </li>*@
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ariahaspopup="
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ariahaspopup="
 true" aria-expanded="false">
-                            <i class="fa fa-database"></i> Products<span class="caret"></span>
+                        <i class="fa fa-database"></i> Products<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a href="~/Product/Category"><i class="fa fa-list"></i> Browse Categories</a>
+                        </li>
+                        <li>
+                            <a href="#" id="search"><i class="fa fa-search"></i> Product Search</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="~/Product/Discount"><i class="fa fa-tag"></i> Current Discounts</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <!-- toggle class with a data-toggle from jquery
+                    caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-users"></i> Customers<b class="caret"></b></a>
+                    <!-- dropdown menu functionality  -->
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="~/Customer/SignIn"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                        </li>
+
+                        <li>
+                            <a href="~/Customer/Register"><i class="far fa-registered"></i> Register</a>
+                        </li>
+
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="~/Customer/Account"><i class="fas fa-user-circle"></i> Your Account</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--<li>Html.ActionLink("Customer", "Customer", "Customer")</li>-->
+
+                <li>
+                    <!-- toggle class with a data-toggle from jquery
+                    caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 1 Assignments<b class="caret"></b></a>
+                    <!-- dropdown menu functionality  -->
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="Unit1Files/Northwind-Lesson2.html">Lesson 2</a>
+                        </li>
+                        <li>
+                            <a href="Unit1Files/Northwind-Lesson3.html">Lesson 3</a>
+                        </li>
+                        <li>
+                            <a href="Unit1Files/Northwind-Lesson3-Lab.html">Lesson 3-Lab : The Balloons Thing</a>
+                        </li>
+                        <li>
+                            <a href="Unit1Files/Northwind-Lesson4.html">Lesson 4</a>
+                        </li>
+                        <li>
+                            <a href="Unit1Files/Northwind-Lesson5.html">Lesson 5</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <!-- toggle class with a data-toggle from jquery
+                    caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 2 Assignments<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li>@Html.ActionLink("Lesson 7 - Car (Foo)", "Index", "Car")</li>
+
+                        <li>@Html.ActionLink("Lesson 7 - About Car (Bar)", "About", "Car")</li>
+
+                        <li>@Html.ActionLink("Lesson 7 Lab?- Pizza", "Bake", "Pizza")</li>
+                        <li role="separator" class="divider"></li>
+                        <li>@Html.ActionLink("Lesson 8 - Free/Bird!!!", "Bird", "Free")</li>
+                        <li>
+                            <a href="/Free/Bird/Jim/42/Green">Lesson 8 - Free/Jim Green!!!</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>Lesson 9 Lab - Products</li>
+                        <li>Lesson 9 HW - Customer</li>
+
+
+                        <li>@Html.ActionLink("Lesson 10 Lab - Stuff", "Stuff", "Home")</li>
+                        <li>@Html.ActionLink("Lesson 10 Lab - Add Number", "AddNumbers", "Home")</li>
+                        <li>@Html.ActionLink("Lesson 10 Lab - Display List", "DisplayList", "Home")</li>
+
+                        <li>@Html.ActionLink("Lesson 11 - Colors", "PrimaryColor", "Color")</li>
+                        <li>@Html.ActionLink("Lesson 12 - Form Data - Balloons", "Birthday", "Home")</li>
+                        <li>@Html.ActionLink("Lesson 12 - Form Data - Products", "DisplayProducts", "Product")</li>
+                        <li>@Html.ActionLink("Unit 2 Project", "Unit2Project", "Product")</li>
+                    </ul>
+                </li>
+                <li>
+                    <!-- toggle class with a data-toggle from jquery
+                    caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 3 Assignments<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li>@Html.ActionLink("Lesson 16 - Categories", "Categories", "Product")</li>
+                        <li>@Html.ActionLink("Lesson 16 - Products", "Products", "Product")</li>
+                    </ul>
+
+                </li>
+
+
+            </ul>
+
+
+            <form class="navbar-form navbar-left hidden-xs" role="search" method="post"
+                  action="~/Product/SearchResults">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <input type="text" class="form-control" name="SearchString" id="SearchString"
+                           placeholder="Product Search">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+            @if (Request.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="@Url.Action("SignOut", "Customer")">
+                            <i class="glyphicon glyphicon-log-out"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                         
-                            <li><a href="~/Product/Category"><i class="fa fa-list"></i> Browse Categories</a></li>
-                            <li><a href="#" id="search"><i class="fa fa-search"></i> Product Search</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="~/Product/Discount"><i class="fa fa-tag"></i> Current Discounts</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <!-- toggle class with a data-toggle from jquery
-        caret needs to be inline without anything between brackets-->
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-users"></i> Customers<b class="caret"></b></a>
-                        <!-- dropdown menu functionality  -->
-                        <ul class="dropdown-menu">
-                            <li><a href="~/Customer/SignIn"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
-
-                            <li><a href="~/Customer/Register"><i class="far fa-registered"></i> Register</a></li>
-
-                            <li class="divider"></li>
-
-                            <li><a href="~/Customer/Account"><i class="fas fa-user-circle"></i> Your Account</a></li>
-                        </ul>
-                    </li>
-
-                    <!--<li>Html.ActionLink("Customer", "Customer", "Customer")</li>-->
-
-                    <li>
-                        <!-- toggle class with a data-toggle from jquery
-        caret needs to be inline without anything between brackets-->
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 1 Assignments<b class="caret"></b></a>
-                        <!-- dropdown menu functionality  -->
-                        <ul class="dropdown-menu">
-                            <li><a href="Unit1Files/Northwind-Lesson2.html">Lesson 2</a></li>
-                            <li><a href="Unit1Files/Northwind-Lesson3.html">Lesson 3</a></li>
-                            <li><a href="Unit1Files/Northwind-Lesson3-Lab.html">Lesson 3-Lab : The Balloons Thing</a></li>
-                            <li><a href="Unit1Files/Northwind-Lesson4.html">Lesson 4</a></li>
-                            <li><a href="Unit1Files/Northwind-Lesson5.html">Lesson 5</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <!-- toggle class with a data-toggle from jquery
-        caret needs to be inline without anything between brackets-->
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 2 Assignments<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-
-                            <li>@Html.ActionLink("Lesson 7 - Car (Foo)", "Index", "Car")</li>
-
-                            <li>@Html.ActionLink("Lesson 7 - About Car (Bar)", "About", "Car")</li>
-
-                            <li>@Html.ActionLink("Lesson 7 Lab?- Pizza", "Bake", "Pizza")</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Lesson 8 - Free/Bird!!!", "Bird", "Free")</li>
-                            <li><a href="/Free/Bird/Jim/42/Green">Lesson 8 - Free/Jim Green!!!</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li>Lesson 9 Lab - Products</li>
-                            <li>Lesson 9 HW - Customer</li>
-
-
-                            <li>@Html.ActionLink("Lesson 10 Lab - Stuff", "Stuff", "Home")</li>
-                            <li>@Html.ActionLink("Lesson 10 Lab - Add Number", "AddNumbers", "Home")</li>
-                            <li>@Html.ActionLink("Lesson 10 Lab - Display List", "DisplayList", "Home")</li>
-
-                            <li>@Html.ActionLink("Lesson 11 - Colors", "PrimaryColor", "Color")</li>
-                            <li>@Html.ActionLink("Lesson 12 - Form Data - Balloons", "Birthday", "Home")</li>
-                            <li>@Html.ActionLink("Lesson 12 - Form Data - Products", "DisplayProducts", "Product")</li>
-                            <li>@Html.ActionLink("Unit 2 Project", "Unit2Project", "Product")</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <!-- toggle class with a data-toggle from jquery
-        caret needs to be inline without anything between brackets-->
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 3 Assignments<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-
-                            <li>@Html.ActionLink("Lesson 16 - Categories", "Categories", "Product")</li>
-                            <li>@Html.ActionLink("Lesson 16 - Products", "Products", "Product")</li>
-                        </ul>
                     </li>
                 </ul>
-            </div>
+            }
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        @*<hr />
+</div>
+<div class="container body-content">
+    @RenderBody()
+    @*<hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>*@
-    </div>
+</div>
 
-    @*Scripts.Render("~/bundles/jquery")
+@*Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Content/js")*@
-    @RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)
 </body>
 </html>

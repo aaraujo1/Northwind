@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Northwind.Models;
+using System.Net;
 
 namespace Northwind.Controllers
 {
@@ -12,17 +13,25 @@ namespace Northwind.Controllers
 
         public ActionResult Category()
         {
+            //return View();
+            // retrieve a list of all categories
+            using (Northwnd db = new Northwnd())
+            {
+                return View(db.Categories.OrderBy(c => c.CategoryName).ToList());
+            } 
+        }
+
+        public ActionResult Search()
+        {
             return View();
         }
 
-        //public ActionResult Search()
-        //{
-        //    return View();
-        //}
-
         public ActionResult Discount()
         {
-            return View();
+            using (Northwnd db = new Northwnd())
+            {
+                return View(db.Discounts.ToList());
+            }
         }
 
         public ActionResult DisplayProducts()
@@ -206,6 +215,39 @@ namespace Northwind.Controllers
             return View(c.GetAll());
 
         }
+
+        // GET: Product/Product/1
+        public ActionResult Product(int? id) {    
+            // if there is no "category" id, return Http Bad Request
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            using (Northwnd db = new Northwnd())
+            {    // save the selected category name to the ViewBag
+                 ViewBag.Filter = db.Categories.Find(id).CategoryName;
+                // retrieve list of products
+                return View(db.Products.Where(p => p.CategoryID == id && p.Discontinued == false).OrderBy(p => p.ProductName).ToList());
+            } 
+
+
+                return View();
+        }
+
+        // POST: Product/SearchResults
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SearchResults(FormCollection Form)
+        {
+            string SearchString = Form["SearchString"];
+            ViewBag.Filter = "Product";
+            using (Northwnd db = new Northwnd())
+            {
+                return View("Product", db.Products.Where(p => p.ProductName.Contains(SearchString) && p.Discontinued == false).OrderBy(p => p.ProductName).ToList());
+            }
+        }
+
 
     }
 }

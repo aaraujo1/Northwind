@@ -11,7 +11,13 @@ namespace Northwind.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            using (Northwnd db = new Northwnd())
+            {
+                // return a list of discounts
+                DateTime now = DateTime.Now;
+                return View(db.Discounts.Where(s => s.StartTime <= now && s.EndTime > now).ToList().Take(3));
+            }
         }
 
         //public ActionResult About()
