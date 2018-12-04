@@ -175,5 +175,37 @@ namespace Northwind.Controllers
             return View(orders);
         }
 
+        public ActionResult Products(string id)
+        {
+            ProductContext p = new ProductContext();
+            //List<Product> products = new List<Product>();
+
+            if (string.IsNullOrEmpty(id))
+            {
+
+
+                //products = p.GetAll();
+
+                return View(p.GetAll());
+            }
+
+            //return View(p.GetAll().Where(x => x.CatId == id));
+            //return View(p.Find(id));
+
+            return View(p.FindBy(id));
+
+            //return View(products);
+
+        }
+        public ActionResult Categories()
+        {
+            CategoryContext c = new CategoryContext();
+
+
+
+            return View(c.GetAll());
+
+        }
+
     }
 }

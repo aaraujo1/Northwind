@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Northwind.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Products</h2>
+
+There are @Model.Count() products
+
+<ul>
+    @{
+        foreach (var p in Model)
+        {
+            <li>@p.Name - @p.Price.ToString("C") - </li>
+        }
+
+    }
+</ul>
+
+
+

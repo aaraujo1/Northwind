@@ -14,6 +14,12 @@ namespace Northwind
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "ProductsByCategory",
+                url: "{controller}/Categories/{id}/Products",
+                defaults: new { controller = "Product", action = "Products" }
+            );
+
+            routes.MapRoute(
                 name: "FreeBird",
                 url: "Free/Bird/{name}/{age}/{color}",
                 defaults: new { controller = "Free", action = "Bird", name = "Unknown", age = 1, color = "N/A" }

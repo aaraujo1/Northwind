@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Northwind.Models.Category>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>Categories</h2>
+
+There are @Model.Count() categories
+<ul>
+    @{
+        foreach (var p in Model)
+        {
+            <li><a href="/Product/Categories/@p.Id/Products">@p.Name</a></li>
+        }
+
+    }
+</ul>

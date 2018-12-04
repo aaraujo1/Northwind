@@ -3,20 +3,24 @@
 
 
 @{
-    ViewBag.Title = "DisplayProducts";
+                /**/
+
+                ViewBag.Title = "DisplayProducts";
 }
 
 <h2>DisplayProducts</h2>
 
-
-<form action="@Url.Action("ProcessOrder","Product")" method="post">
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<form action="@Url.Action("ProcessOrder","Home")" method="post">
     <table class="table table-striped table-bordered">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.Price))
             </th>
             <th>Quantity</th>
             <th class="hidden">Total</th>
