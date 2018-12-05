@@ -165,66 +165,69 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="DataLayer\Cart.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Category.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Customer.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Discount.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Employee.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Northwnd.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Northwnd.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Northwnd.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Northwnd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Northwnd.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Order.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Order_Detail.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Product.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Region.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Shipper.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Supplier.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataLayer\Territory.cs">
+      <DependentUpon>Northwnd.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Birthday.cs" />
-    <Compile Include="Models\Category.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CategoryContext.cs" />
-    <Compile Include="Models\Customer.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CustomerEdit.cs" />
     <Compile Include="Models\CustomerRegister.cs" />
     <Compile Include="Models\CustomerSignIn.cs" />
     <Compile Include="Models\Data.cs" />
-    <Compile Include="Models\Discount.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Employee.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IController.cs" />
-    <Compile Include="Models\NorthwindModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NorthwindModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NorthwindModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NorthwindModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NorthwindModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Order.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Order_Detail.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Region.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Shipper.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\StateHelper.cs" />
-    <Compile Include="Models\Supplier.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Territory.cs">
-      <DependentUpon>NorthwindModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Unit2ProjectProductContext.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -253,15 +256,15 @@
     <Content Include="Content\css\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\css\images\ui-icons_d8e7f3_256x240.png" />
     <Content Include="Content\css\images\ui-icons_f9bd01_256x240.png" />
-    <Content Include="Models\NorthwindModel.Context.tt">
+    <Content Include="DataLayer\Northwnd.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NorthwindModel.Context.cs</LastGenOutput>
-      <DependentUpon>NorthwindModel.edmx</DependentUpon>
+      <DependentUpon>Northwnd.edmx</DependentUpon>
+      <LastGenOutput>Northwnd.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\NorthwindModel.tt">
+    <Content Include="DataLayer\Northwnd.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NorthwindModel.edmx</DependentUpon>
-      <LastGenOutput>NorthwindModel.cs</LastGenOutput>
+      <DependentUpon>Northwnd.edmx</DependentUpon>
+      <LastGenOutput>Northwnd.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\birthday.js" />
     <Content Include="Content\js\bootstrap.js" />
@@ -308,12 +311,12 @@
     <Content Include="Content\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\NorthwindModel.edmx">
+    <EntityDeploy Include="DataLayer\Northwnd.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NorthwindModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Northwnd.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\NorthwindModel.edmx.diagram">
-      <DependentUpon>NorthwindModel.edmx</DependentUpon>
+    <Content Include="DataLayer\Northwnd.edmx.diagram">
+      <DependentUpon>Northwnd.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\wctc-aaraujo1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wctc-aaraujo1 - Web Deploy.pubxml" />

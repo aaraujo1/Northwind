@@ -7,22 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Northwind.Models
+namespace Northwind.DataLayer
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Discount
+    public partial class Order_Detail
     {
-        public int DiscountID { get; set; }
-        public Nullable<int> Code { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
-        public Nullable<System.DateTime> EndTime { get; set; }
-        public Nullable<int> ProductID { get; set; }
-        public Nullable<decimal> DiscountPercent { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public decimal UnitPrice { get; set; }
+        public short Quantity { get; set; }
+        public decimal Discount { get; set; }
     
+        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }
 }
