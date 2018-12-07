@@ -220,17 +220,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Birthday.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryContext.cs" />
     <Compile Include="Models\CustomerEdit.cs" />
     <Compile Include="Models\CustomerRegister.cs" />
     <Compile Include="Models\CustomerSignIn.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\IController.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\StateHelper.cs" />
     <Compile Include="Models\Unit2ProjectProductContext.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\UserAccounts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\animate.css" />
@@ -380,6 +384,7 @@
     <Content Include="Views\Product\Categories.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

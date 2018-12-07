@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Northwind.Models;
 using System.Net;
+using Northwind.DataLayer;
 
 namespace Northwind.Controllers
 {
@@ -59,14 +60,14 @@ namespace Northwind.Controllers
         {
             //it's the dependant on a class
             ProductContext p = new ProductContext();
-            Product product = p.Find("100");
+            Models.Product product = p.Find("100");
 
             return View(product);
         }
 
         public ActionResult ProcessOrder(FormCollection form)
         {
-            List<Order> orders = new List<Order>();
+            List<Models.Order> orders = new List<Models.Order>();
 
             //we have acces to the form
             //better than form[p.Id]
@@ -92,7 +93,7 @@ namespace Northwind.Controllers
 
             //it's the dependant on a class
             ProductContext productContext = new ProductContext();
-            List<Product> products = productContext.GetAll();
+            List<Models.Product> products = productContext.GetAll();
 
 
 
@@ -100,7 +101,7 @@ namespace Northwind.Controllers
             {
                 if (Int16.TryParse(form[p.Id], out qty) && qty > 0)
                 {
-                    orders.Add(new Order { Prod = p, Qty = qty });
+                    orders.Add(new Models.Order { Prod = p, Qty = qty });
                 }
 
                 //int qty = Convert.ToInt16(form[p.Id]);
@@ -141,12 +142,12 @@ namespace Northwind.Controllers
         {
             Data d = new Data();
 
-            List<Order> orders = new List<Order>();
+            List<Models.Order> orders = new List<Models.Order>();
 
             Int16 qty;
 
             Unit2ProjectProductContext unit2ProjectProductContext = new Unit2ProjectProductContext();
-            List<Product> products = unit2ProjectProductContext.GetAll();
+            List<Models.Product> products = unit2ProjectProductContext.GetAll();
 
 
 
@@ -154,7 +155,7 @@ namespace Northwind.Controllers
             {
                 if (Int16.TryParse(form[p.Id], out qty) && qty > 0)
                 {
-                    orders.Add(new Order { Prod = p, Qty = qty });
+                    orders.Add(new Models.Order { Prod = p, Qty = qty });
                 }
 
                
@@ -248,6 +249,117 @@ namespace Northwind.Controllers
             }
         }
 
+
+        public ActionResult Index(int? id, string SearchString)
+        {
+            ViewBag.Filter = "Products";
+
+            using (var db = new Northwnd())
+            {
+                var products = db.Products.Where(p => !p.Discontinued);
+
+                // apply searchstring
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    ViewBag.Filter += " Matching " + SearchString;
+                    products = products.Where(p => p.ProductName.Contains(SearchString));
+                }
+
+                // apply id
+                if (id != null)
+                {
+                    products = products.Where(p => p.ProductID == id);
+                }
+
+                // retrieve list of products
+                return View(products.OrderBy(p => p.ProductName).ToList());
+            }
+        }
+
+        public ActionResult ProductByCategory(int? id, string SearchString)
+        {
+            ViewBag.Filter = "Products";
+
+            using (var db = new Northwnd())
+            {
+                var products = db.Products
+                    .Where(p => !p.Discontinued);
+
+                // apply searchstring
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    ViewBag.Filter += " Matching " + SearchString;
+                    products = products.Where(p => p.ProductName.Contains(SearchString));
+                }
+
+                // apply id
+                if (id != null)
+                {
+                    ViewBag.Filter += " in Category " + db.Categories.Find(id)?.CategoryName;
+                    products = products.Where(p => p.CategoryID == id);
+                }
+
+                // retrieve list of products
+                return View("Index", products.OrderBy(p => p.ProductName).ToList());
+            }
+        }
+
+        // GET: Product/FilterProducts
+
+        //http://localhost:xxxxx/Product/FilterProducts/?SearchString=en&PriceFilter=15
+        public JsonResult FilterProducts(int? id, string SearchString, decimal? PriceFilter)
+        {
+            /*if (priceFilter == null)
+                Response.StatusCode = 400;*/
+
+            using (var db = new Northwnd())
+            {
+                //var Products = db.Products.Where(p => p.Discontinued == false).ToList();
+                /*var ProductDTOs = (from p in Products.Where(UnitPrice >= PriceFilter)
+                                   orderby p.ProductName
+                                   select new
+                                   {
+                                       p.ProductID,
+                                       p.ProductName,
+                                       p.QuantityPerUnit,
+                                       p.UnitPrice,
+                                       p.UnitsInStock
+                                   }).ToList();*/
+
+
+
+                /*if (id != null)
+                {
+                    products.Where(p => p.CategoryID == id);
+                }*/
+
+                //product data transfer object (DTO)
+                var products = db.Products.Where(p => p.UnitPrice >= PriceFilter && p.Discontinued == false)
+                    .OrderBy(pn => pn.ProductName)
+                    .Select(p => new
+                    {
+                        p.ProductID,
+                        p.ProductName,
+                        p.QuantityPerUnit,
+                        p.UnitPrice,
+                        p.UnitsInStock
+                    });
+
+
+
+
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    products.Where(p => p.ProductName.Contains(SearchString));
+                }
+
+                var productDTO = products.ToList();
+
+                return Json(productDTO, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { }, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

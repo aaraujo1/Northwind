@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace FormData.Models
+namespace Northwind.Models
 {
     public class CustomerEdit
     {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using FormData.DataLayer;
+using Northwind.DataLayer;
 
-namespace FormData.Models
+namespace Northwind.Models
 {
     public class CustomerRegister
     {

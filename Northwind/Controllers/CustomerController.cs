@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Northwind.Models;
-//using Northwind.Security;
+using Northwind.Security;
 using System.Web.Security;
 using System.Net;
+using Northwind.DataLayer;
 
 using AutoMapper;
 
