@@ -50,7 +50,7 @@ true" aria-expanded="false">
                             <a href="~/Product/Category"><i class="fa fa-list"></i> Browse Categories</a>
                         </li>
                         <li>
-                            <a href="#" id="search"><i class="fa fa-search"></i> Product Search</a>
+                            <a href="~/Product/Search" id="search"><i class="fa fa-search"></i> Product Search</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
@@ -80,13 +80,29 @@ true" aria-expanded="false">
                         </li>
                     </ul>
                 </li>
+                
+                <li>
+                    <!-- toggle class with a data-toggle from jquery
+                    caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Reports<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            <a href="#"><i class="fas fa-sign-in-alt"></i> Beverages Category Breakdown</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-sign-in-alt"></i> Sales By Country for 2016</a>
+                        </li>
+                    </ul>
+
+                </li>
 
                 <!--<li>Html.ActionLink("Customer", "Customer", "Customer")</li>-->
 
                 <li>
                     <!-- toggle class with a data-toggle from jquery
-                    caret needs to be inline without anything between brackets-->
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 1 Assignments<b class="caret"></b></a>
+        caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 1<b class="caret"></b></a>
                     <!-- dropdown menu functionality  -->
                     <ul class="dropdown-menu">
                         <li>
@@ -108,8 +124,8 @@ true" aria-expanded="false">
                 </li>
                 <li>
                     <!-- toggle class with a data-toggle from jquery
-                    caret needs to be inline without anything between brackets-->
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 2 Assignments<b class="caret"></b></a>
+        caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 2<b class="caret"></b></a>
                     <ul class="dropdown-menu">
 
                         <li>@Html.ActionLink("Lesson 7 - Car (Foo)", "Index", "Car")</li>
@@ -139,12 +155,24 @@ true" aria-expanded="false">
                 </li>
                 <li>
                     <!-- toggle class with a data-toggle from jquery
-                    caret needs to be inline without anything between brackets-->
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 3 Assignments<b class="caret"></b></a>
+        caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 3<b class="caret"></b></a>
                     <ul class="dropdown-menu">
 
                         <li>@Html.ActionLink("Lesson 16 - Categories", "Categories", "Product")</li>
                         <li>@Html.ActionLink("Lesson 16 - Products", "Products", "Product")</li>
+                    </ul>
+
+                </li>
+                <li>
+                    <!-- toggle class with a data-toggle from jquery
+        caret needs to be inline without anything between brackets-->
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Unit 4<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li>@Html.ActionLink("Lesson 18 - Product Search", "Search", "Product")</li>
+                        <li>@Html.ActionLink("Lesson 20 - Display All Discounts", "Discount", "Product")</li>
+                        <li>@Html.ActionLink("Lesson 21 - Customer Registration", "Register", "Customer")</li>
                     </ul>
 
                 </li>
