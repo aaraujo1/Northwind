@@ -34,12 +34,29 @@ namespace Northwind.Controllers
                 //var dbContext = db.Categories.Include("Products").ToList();
                 //var dbContext = db.Order_Details.Include("Products").Include("Categories").ToList();
 
-                var dbContext = db.Categories.Include(x => x.Products.Select(o => o.Order_Details)).ToList();
-                ViewBag.dbContext = dbContext;
-                return View(dbContext);
+                /*var dbContext = db.Categories.Include(x => x.Products.Select(o => o.Order_Details)).ToList();
+                ViewBag.dbContext = dbContext;*/
+                return View(db.Categories.OrderBy(c => c.CategoryName).ToList());
             }
             
         }
+
+        public JsonResult SalesByCountryData()
+        {
+
+            using (Northwnd db = new Northwnd())
+            {
+
+                //var dbContext = db.Categories.Include("Products").ToList();
+                //var dbContext = db.Order_Details.Include("Products").Include("Categories").ToList();
+
+                var dbContext = db.Categories.Include(x => x.Products.Select(o => o.Order_Details)).ToList();
+                ViewBag.dbContext = dbContext;
+                return Json(dbContext, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
 
         public ActionResult CategoryBreakdown()
         {

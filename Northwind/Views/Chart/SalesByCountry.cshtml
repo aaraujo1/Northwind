@@ -1,5 +1,4 @@
 ﻿@using Northwind.DataLayer
-
 @model IEnumerable<Northwind.DataLayer.Category>
 
 @{
@@ -8,26 +7,136 @@
 
 <h2>SalesByCountry</h2>
 
-<table>
-    @{
-        foreach (Category c in Model)
-        {
-            <tr>
-                <td>@c.CategoryName</td>
-                <td>@c.Products.Count</td>
-                
-                    @{ foreach (Product p in Model)
-                        {
-                            @{ foreach (Order_Detail od in p)
-                                {
-                                    od.UnitPrice;
-                                }
-                            }
-                        }
-                    }
-                
-            </tr>
-        }
 
-    }
+<div class="row">
+    <div class="col-md-6">
+        <!-- DROPDOWN AND DATA -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                @foreach (Category c in @Model)
+                {
+                    <option value="@c.CategoryName">@c.CategoryName</option>
+                }
+            </select>
+
+        </div>
+    </div>
+
+    <!--<div class="col-md-6">
+            <!-- CHARTS
+        <canvas id="myChart" height="400" width="500"></canvas>
+    </div>-->
+</div>
+
+
+
+<div Style="font-family: Corbel; font-size: small ;text-align:center " class="row">
+    <div style="width:100%;height:100%">
+        <canvas id="myChart" style="padding: 0;margin: auto;display: block; "> </canvas>
+    </div>
+</div>
+
+
+
+<table class="table table-hover table-responsive">
+    <tbody id="categories">
+        @{
+            foreach (Category c in Model)
+            {
+                <tr>
+                    <td>@c.CategoryName</td>
+
+
+                </tr>
+            }
+
+        }
+        </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            var url = "@Url.Content("~")Chart/SalesByCountryData";
+
+
+            $.getJSON(url)
+                .always(function (data, textStatus, statusObject) {
+                    if (statusObject.status == 200) {
+                        //200 ok
+                        //console.log("status: " + statusObject.status)
+                        $('#categories').html('');
+
+                        for (i = 0; i < data.length; i++) {
+                            var id = data[i].ProductID;
+                            var str = "<tr class='product-row' id='" + id + "'>";
+                            str += "<td><span id='name_" + id + "'>" + data[i].ProductName + "</span> (" +
+                                data[i].QuantityPerUnit + ")</td>";
+                            str += "<td class='text-right'>$<span id='price_" + id + "'>" +
+                                data[i].UnitPrice.toFixed(2) + "</span></td>";
+                            str += "<td class='text-right'>" + data[i].UnitsInStock + "</td>";
+                            str += "</tr>";
+                            $('#categories').append(str);
+                        }
+
+                        //showModelCount(data.length);
+
+                        //console.log(statusObject.status);
+                        //console.log(data);
+                    } else {
+                        //Error
+                        console.log("response code: " + data.status);
+                        console.log("respnse: " + data.textStatus);
+                    }
+                })
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Chart/SalesByCountryData",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (chData) {
+                    var aData = chData;
+                    var aLabels = aData[0];
+                    var aDatasets1 = aData[1];
+                    var dataT = {
+                        labels: aLabels,
+                        datasets: [{
+                            label: "Test Data",
+                            data: aDatasets1,
+                            fill: false,
+                            backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                            borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                            borderWidth: 1
+                        }]
+                    };
+
+
+
+                    var ctx = $("#myChart").get(0).getContext("2d");
+
+
+                    var myNewChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: dataT,
+                        options: {
+                            responsive: true,
+                            title: { display: true, text: 'CHART.JS DEMO CHART' },
+                            legend: { position: 'bottom' },
+                            scales: {
+                                xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                                yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                            },
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    }
