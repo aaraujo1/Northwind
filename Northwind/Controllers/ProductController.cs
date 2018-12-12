@@ -18,7 +18,8 @@ namespace Northwind.Controllers
             // retrieve a list of all categories
             using (Northwnd db = new Northwnd())
             {
-                return View(db.Categories.OrderBy(c => c.CategoryName).ToList());
+                var dbContext = db.Categories.OrderBy(c => c.CategoryName).ToList();
+                return View(dbContext);
             } 
         }
 
@@ -233,7 +234,7 @@ namespace Northwind.Controllers
             } 
 
 
-                return View();
+                //return View();
         }
 
         // POST: Product/SearchResults
@@ -282,13 +283,16 @@ namespace Northwind.Controllers
 
             using (var db = new Northwnd())
             {
-                var products = db.Products
-                    .Where(p => !p.Discontinued);
+                //var products = db.Products.Where(p => !p.Discontinued);
+
+                var products = db.Products.Include("Order_Details").Include("Category").Where(p => !p.Discontinued);
 
                 // apply searchstring
                 if (!string.IsNullOrEmpty(SearchString))
                 {
                     ViewBag.Filter += " Matching " + SearchString;
+                    //products = products.Where(p => p.ProductName.Contains(SearchString));
+
                     products = products.Where(p => p.ProductName.Contains(SearchString));
                 }
 
@@ -358,7 +362,7 @@ namespace Northwind.Controllers
                 return Json(productDTO, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(new { }, JsonRequestBehavior.AllowGet);
+            //return Json(new { }, JsonRequestBehavior.AllowGet);
         }
 
     }

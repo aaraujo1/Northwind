@@ -27,6 +27,7 @@ namespace Northwind.Controllers
                 Response.StatusCode = 400;
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
+
             // create cart item from Json object
             Cart sc = new Cart();
 
@@ -48,6 +49,7 @@ namespace Northwind.Controllers
                     // this product is already in the customer's cart,
                     // update the existing cart item's quantity
                     //Cart cart = db.Carts.Where(c => c.ProductID == sc.ProductID && c.CustomerID == sc.CustomerID).FirstOrDefault();
+                    //gets the cart first
                     Cart cart = db.Carts.FirstOrDefault(c => c.ProductID == sc.ProductID && c.CustomerID == sc.CustomerID);
                     cart.Quantity += sc.Quantity;
                     sc = new Cart()

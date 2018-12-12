@@ -9,7 +9,7 @@ namespace Northwind.Controllers
     public abstract class BaseController : Controller
     {
         //will execute ahead of controllers
-        IMapper Mapper;
+        protected IMapper Mapper;
 
         protected BaseController()
         {

@@ -1,0 +1,33 @@
+﻿@using Northwind.DataLayer
+
+@model IEnumerable<Northwind.DataLayer.Category>
+
+@{
+    ViewBag.Title = "SalesByCountry";
+}
+
+<h2>SalesByCountry</h2>
+
+<table>
+    @{
+        foreach (Category c in Model)
+        {
+            <tr>
+                <td>@c.CategoryName</td>
+                <td>@c.Products.Count</td>
+                
+                    @{ foreach (Product p in Model)
+                        {
+                            @{ foreach (Order_Detail od in p)
+                                {
+                                    od.UnitPrice;
+                                }
+                            }
+                        }
+                    }
+                
+            </tr>
+        }
+
+    }
+</table>
