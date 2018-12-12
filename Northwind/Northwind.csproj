@@ -158,6 +158,7 @@
     <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FreeController.cs" />
@@ -220,6 +221,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Birthday.cs" />
+    <Compile Include="Models\CartDTO.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryContext.cs" />
     <Compile Include="Models\CustomerEdit.cs" />
@@ -389,6 +391,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Cart\" />
     <Folder Include="Views\Hello\" />
   </ItemGroup>
   <ItemGroup>
