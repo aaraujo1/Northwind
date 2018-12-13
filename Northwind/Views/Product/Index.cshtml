@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Product";
+    int CustomerID = Request.IsAuthenticated ? Convert.ToInt32(User.Identity.Name) : -1;
 }
 
 @*<div id="alert-search" class="alert alert-info alert-dismissable fade in" style="position:fixed;">
@@ -158,6 +159,27 @@
                 $('#Total').html(numberWithCommas(total.toFixed(2)));
             });
 
+            // attach event listener to modal window's update button
+            $('#AddToCart').click(function () {
+                $('#myModal').modal('hide');
+                //alert(ProductID + "|" + $('#Quantity').val());
+                //alert(ProductID + "|" + @CustomerID + "|" + $('#Quantity').val());
+                //$.post(url, data).always;
+
+                var url = "@Url.Content("~")Cart/AddToCart";
+                //var postData = "{ ProductID: ProductID, CustomerID: @CustomerID, Quantity: $('#Quantity').val() }";
+                $.post(url, { ProductID: ProductID, CustomerID: @CustomerID, Quantity: $('#Quantity').val() }).always(function (data, textStatus, statusObject) {
+                    if (statusObject == 200) {
+                        console.log($('#name_' + ProductID).html() + 'added to cart');
+                    } else {
+                        // error
+                        console.log("Http response code: " + data.status);
+                        console.log("Http response: " + data.statusText);
+                    }
+                });
+            });
+
+
             // function to display commas in number
             function numberWithCommas(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -167,16 +189,23 @@
             var ProductID;
             // product-row is clicked
             $('#products').on('click', '.product-row', function () {
-                ProductID = this.id;
-                // display selected product's name & price in modal
-                $('#ProductName').html($('#name_' + ProductID).html());
-                $('#UnitPrice').html($('#price_' + ProductID).html());
-                // set product quantity = 1
-                $('#Quantity').val(1);
-                // calculate and display total in modal
-                $('#Quantity').change();
-                // display modal
-                $('#myModal').modal();
+                // handle error if customer is not authenticated
+                if (@CustomerID == -1) {
+                    // display error
+                    alert("No ID");
+                    //disable button
+                } else {
+                    ProductID = this.id;
+                    // display selected product's name & price in modal
+                    $('#ProductName').html($('#name_' + ProductID).html());
+                    $('#UnitPrice').html($('#price_' + ProductID).html());
+                    // set product quantity = 1
+                    $('#Quantity').val(1);
+                    // calculate and display total in modal
+                    $('#Quantity').change();
+                    // display modal
+                    $('#myModal').modal();
+                }
             });
 
         });
