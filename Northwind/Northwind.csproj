@@ -266,6 +266,8 @@
     <Content Include="Content\css\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\css\images\ui-icons_d8e7f3_256x240.png" />
     <Content Include="Content\css\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\js\Chart.bundle.min.js" />
+    <Content Include="Content\js\Chart.min.js" />
     <Content Include="DataLayer\Northwnd.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Northwnd.edmx</DependentUpon>
@@ -395,7 +397,9 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Chart\CategoryBreakdown.cshtml" />
     <Content Include="Views\Chart\SalesByCountry.cshtml" />
-    <Content Include="Views\ChartNew\Index.cshtml" />
+    <Content Include="Views\ChartNew\CategorySales.cshtml" />
+    <Content Include="Views\ChartNew\YearlySales.cshtml" />
+    <Content Include="Views\ChartNew\YearlySalesByCountry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -35,6 +35,8 @@ namespace Northwind
             bundles.Add(new ScriptBundle("~/Content/jsFiles").Include(
                 "~/Content/js/bootstrap.min.js",
                 "~/Content/js/jquery-3.3.1.min.js",
+                "~/Content/js/Chart.min.js",
+                "~/Content/js/Chart.bundle.min.js",
                 "~/Content/js/jquery-ui.min.js",
                 "~/Content/js/npm.js",
                 "~/Content/js/popper.js",

@@ -1,0 +1,156 @@
+﻿@using Northwind.DataLayer
+@model IEnumerable<Int32>
+@{
+
+
+    ViewBag.Title = "Charts";
+
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- DROPDOWN AND DATA -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose...</option>
+                @foreach (Int32 c in @Model)
+                {
+                    <option value="@c.ToString()">@c.ToString()</option>
+                }
+            </select>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10">
+        <!-- CHARTS -->
+        <canvas id="myChart" height="400" width="600"></canvas>
+    </div>
+</div>
+<div class="font-md">
+    <a href="~/Home/Index"><i class="fa fa-home"></i> Home</a>
+</div>
+
+@section scripts
+{
+    <script src="../Scripts/Chart.min.js"></script>
+    <script>
+        $(function () {
+            var url = "@Url.Content("~")ChartNew/YearlySalesByCountryData";
+            var catNames = [];
+            var totSales = [];
+
+            var myNewChart;
+
+            $.getJSON(url)
+                .always(function (data, textStatus, statusObject) {
+                    if (statusObject.status == 200) {
+                        //200 ok
+                        //console.log("status: " + statusObject.status)
+                        $('#categories').html('');
+
+                        for (i = 0; i < data.length; i++) {
+                            catNames.push(data[i].Country);
+                            totSales.push(data[i].TotalSales.toFixed(2));
+                        }
+
+                        createChart();
+                        console.log(catNames);
+                        console.log(totSales);
+
+                        //showModelCount(data.length);
+
+                        //console.log(statusObject.status);
+                        //console.log(data);
+                    } else {
+                        //Error
+                        console.log("response code: " + data.status);
+                        console.log("response: " + data.textStatus);
+                    }
+                })
+
+            $('#inputGroupSelect01').change(function () {
+                var newURL = "@Url.Content("~")ChartNew/YearlySalesByCountryData?year=" + $('#inputGroupSelect01').val();
+                console.log("test");
+
+                if ($('#inputGroupSelect01').val() == "Choose...") {
+                    newURL = "@Url.Content("~")ChartNew/YearlySalesByCountryData";
+                }
+
+                    $.getJSON(newURL)
+                        .always(function (data, textStatus, statusObject) {
+                            catNames = [];
+                            totSales = [];
+                            for (i = 0; i < data.length; i++) {
+                                catNames.push(data[i].Country);
+                                totSales.push(data[i].TotalSales.toFixed(2));
+                            }
+
+                            createChart();
+                            console.log(catNames);
+                            console.log(totSales);
+                        });
+
+            });
+
+
+
+
+
+
+
+            //                    var aData = chData;
+            //                    var aLabels = aData[0];
+            //                    var aDatasets1 = aData[1];
+            //
+
+            function createChart() {
+                if (myNewChart) {
+                    myNewChart.destroy();
+                }
+
+                var dataT = {
+                    labels: catNames,
+                    datasets: [{
+                        //label: "Price",
+                        data: totSales,
+                        //fill: false,
+                        backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                        borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        borderWidth: 1
+                    }]
+                };
+
+
+
+                var ctx = $("#myChart").get(0).getContext("2d");
+
+
+                myNewChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: dataT,
+                    options: {
+                        responsive: true,
+                        title: { display: true, text: "Total Sales of " + ($('#inputGroupSelect01').val() == "Choose..." ? "All Categories" : $('#inputGroupSelect01').val())},
+                        legend: { display: false, position: 'left' },
+                        /*tooltips: {
+                            callbacks: {
+
+                            }
+                        }*/
+                        scales: {
+                            xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                            yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 100000, beginAtZero: true } }]
+                        },
+                    }
+                });
+
+
+            }
+        });
+    </script>
+}
