@@ -8,11 +8,16 @@ using Northwind.Models;
 using Northwind.DataLayer;
 using System.Data.Entity;
 
+using Northwind.Models;
+
+
 namespace Northwind.Controllers
 {
     public class ChartController : Controller
     {
+
         //[AllowCrossSiteJson]
+
         public JsonResult ChartData()
         {
             List<ChartData> cd = new List<ChartData>()
@@ -24,6 +29,7 @@ namespace Northwind.Controllers
 
             return Json(cd, JsonRequestBehavior.AllowGet);
         }
+
 
         public ActionResult SalesByCountry()
         {
@@ -62,5 +68,6 @@ namespace Northwind.Controllers
         {
             return View();
         }
+
     }
 }
