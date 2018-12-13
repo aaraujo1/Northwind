@@ -24,19 +24,21 @@
 
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-md-6">
         <!-- CHARTS -->
         <canvas id="myChart" height="400" width="500"></canvas>
     </div>
 </div>
+    <div class="font-md">
+        <a href="~/Home/Index"><i class="fa fa-home"></i> Home</a>
+    </div>
 
-<div class="font-md">
-    <a href="~/Home/Index"><i class="fa fa-home"></i> Home</a>
-</div>
-
-@section scripts
+    @section scripts
 {
-    <script>
+        <script src="../Scripts/Chart.min.js"></script>
+        <script>
         $(function () {
             var url = "@Url.Content("~")ChartNew/FilterChart";
             var catNames = [];
@@ -63,7 +65,7 @@
                     } else {
                         //Error
                         console.log("response code: " + data.status);
-                        console.log("respnse: " + data.textStatus);
+                        console.log("response: " + data.textStatus);
                     }
                 })
 
@@ -79,9 +81,9 @@
             var dataT = {
                 labels: catNames,
                 datasets: [{
-                    label: "Test Data",
+                    label: "Price",
                     data: totSales,
-                    fill: false,
+                    //fill: false,
                     backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
                     borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
                     borderWidth: 1
@@ -94,18 +96,18 @@
 
 
             var myNewChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'doughnut',
                 data: dataT,
                 options: {
                     responsive: true,
-                    title: { display: true, text: 'CHART.JS DEMO CHART' },
-                    legend: { position: 'bottom' },
-                    scales: {
+                    title: { display: true, text: 'Table Title' },
+                    legend: { display: true, position: 'left' }
+                    /*scales: {
                         xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
-                        yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
-                    },
+                        yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 100000, beginAtZero: true } }]
+                    }*/
                 }
             });
         });
-    </script>
-}
+        </script>
+    }

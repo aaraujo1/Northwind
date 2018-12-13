@@ -159,11 +159,9 @@
     <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CarController.cs" />
-
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\ChartNewController.cs" />
-    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FreeController.cs" />
@@ -403,7 +401,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Cart\" />
-    <Folder Include="Views\Chart\" />
     <Folder Include="Views\Hello\" />
   </ItemGroup>
   <ItemGroup>

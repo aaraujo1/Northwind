@@ -8,8 +8,6 @@ using Northwind.Models;
 using Northwind.DataLayer;
 using System.Data.Entity;
 
-using Northwind.Models;
-
 
 namespace Northwind.Controllers
 {
