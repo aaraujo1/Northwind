@@ -1,5 +1,5 @@
 ﻿@using Northwind.DataLayer
-@model IEnumerable<Int32>
+@model IEnumerable<Northwind.DataLayer.Category>
 @{
 
 
@@ -16,9 +16,9 @@
             </div>
             <select class="custom-select" id="inputGroupSelect01">
                 <option selected>Choose...</option>
-                @foreach (Int32 c in @Model)
+                @foreach (Category c in @Model)
                 {
-                    <option value="@c.ToString()">@c.ToString()</option>
+                    <option value="@c.CategoryName">@c.CategoryName</option>
                 }
             </select>
 
@@ -26,21 +26,21 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-6">
         <!-- CHARTS -->
-        <canvas id="myChart" height="400" width="600"></canvas>
+        <canvas id="myChart" height="400" width="500"></canvas>
     </div>
 </div>
-<div class="font-md">
-    <a href="~/Home/Index"><i class="fa fa-home"></i> Home</a>
-</div>
+    <div class="font-md">
+        <a href="~/Home/Index"><i class="fa fa-home"></i> Home</a>
+    </div>
 
-@section scripts
+    @section scripts
 {
-    <script src="../Scripts/Chart.min.js"></script>
-    <script>
+        <script src="../Scripts/Chart.min.js"></script>
+        <script>
         $(function () {
-            var url = "@Url.Content("~")ChartNew/YearlySalesByCountryData";
+            var url = "@Url.Content("~")Chart/FilterChart";
             var catNames = [];
             var totSales = [];
 
@@ -54,8 +54,8 @@
                         $('#categories').html('');
 
                         for (i = 0; i < data.length; i++) {
-                            catNames.push(data[i].Country);
-                            totSales.push(data[i].TotalSales.toFixed(2));
+                            catNames.push(data[i].Name);
+                            totSales.push(data[i].Sum.toFixed(2));
                         }
 
                         createChart();
@@ -74,11 +74,11 @@
                 })
 
             $('#inputGroupSelect01').change(function () {
-                var newURL = "@Url.Content("~")ChartNew/YearlySalesByCountryData?year=" + $('#inputGroupSelect01').val();
+                var newURL = "@Url.Content("~")Chart/FilterChart?CategoryName=" + $('#inputGroupSelect01').val();
                 console.log("test");
 
                 if ($('#inputGroupSelect01').val() == "Choose...") {
-                    newURL = "@Url.Content("~")ChartNew/YearlySalesByCountryData";
+                    newURL = "@Url.Content("~")Chart/FilterChart";
                 }
 
                     $.getJSON(newURL)
@@ -86,22 +86,54 @@
                             catNames = [];
                             totSales = [];
                             for (i = 0; i < data.length; i++) {
-                                catNames.push(data[i].Country);
-                                totSales.push(data[i].TotalSales.toFixed(2));
+                                catNames.push(data[i].Name);
+                                totSales.push(data[i].Sum.toFixed(2));
                             }
-
-
 
                             createChart();
                             console.log(catNames);
                             console.log(totSales);
                         });
-
+                
             });
 
+            function getRandomRgbColor() {
+
+                var color = [];
+
+                color[0] = Math.floor(Math.random() * 255);
+                color[1] = Math.floor(Math.random() * 255);
+                color[2] = Math.floor(Math.random() * 255);
+
+                return color;
+            }
 
 
+            function getRandomColorArray(numberOfColors) {
+                var colorArray = [[],[]];
 
+                for (var i = 0; i < numberOfColors; i++) {
+                    color = getRandomRgbColor();
+
+
+                    colorArray[0].push("rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ", 0.4)");
+                    colorArray[1].push("rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ")");
+                }
+
+                return colorArray;
+            }
+
+
+            /*function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }*/
+
+            
 
 
 
@@ -117,10 +149,12 @@
 
                 var colorArray = getRandomColorArray(catNames.length);
 
+                var rgbaColorArray
+
                 var dataT = {
                     labels: catNames,
                     datasets: [{
-                        //label: "Price",
+                        label: "Price",
                         data: totSales,
                         //fill: false,
                         //backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
@@ -131,57 +165,32 @@
                     }]
                 };
 
-                function getRandomRgbColor() {
-
-                    var color = [];
-
-                    color[0] = Math.floor(Math.random() * 255);
-                    color[1] = Math.floor(Math.random() * 255);
-                    color[2] = Math.floor(Math.random() * 255);
-
-                    return color;
-                }
-
-
-                function getRandomColorArray(numberOfColors) {
-                    var colorArray = [[], []];
-
-                    for (var i = 0; i < numberOfColors; i++) {
-                        color = getRandomRgbColor();
-
-
-                        colorArray[0].push("rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ", 0.4)");
-                        colorArray[1].push("rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ")");
-                    }
-
-                    return colorArray;
-                }
-
+                
 
                 var ctx = $("#myChart").get(0).getContext("2d");
 
-
+                
                 myNewChart = new Chart(ctx, {
-                    type: 'bar',
+                    type: 'doughnut',
                     data: dataT,
                     options: {
                         responsive: true,
                         title: { display: true, text: "Total Sales of " + ($('#inputGroupSelect01').val() == "Choose..." ? "All Categories" : $('#inputGroupSelect01').val())},
-                        legend: { display: false, position: 'left' },
+                        legend: { display: true, position: 'left' },
                         /*tooltips: {
                             callbacks: {
 
                             }
-                        }*/
-                        scales: {
+                        }/*
+                        /*scales: {
                             xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
                             yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 100000, beginAtZero: true } }]
-                        },
+                        },*/
                     }
                 });
 
-
+                
             }
         });
-    </script>
-}
+        </script>
+    }

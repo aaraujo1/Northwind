@@ -161,7 +161,6 @@
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
-    <Compile Include="Controllers\ChartNewController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FreeController.cs" />
@@ -397,11 +396,9 @@
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Chart\CategoryBreakdown.cshtml" />
-    <Content Include="Views\Chart\SalesByCountry.cshtml" />
-    <Content Include="Views\ChartNew\CategorySales.cshtml" />
-    <Content Include="Views\ChartNew\YearlySales.cshtml" />
-    <Content Include="Views\ChartNew\YearlySalesByCountry.cshtml" />
+    <Content Include="Views\Chart\CategorySales.cshtml" />
+    <Content Include="Views\Chart\YearlySales.cshtml" />
+    <Content Include="Views\Chart\YearlySalesByCountry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
