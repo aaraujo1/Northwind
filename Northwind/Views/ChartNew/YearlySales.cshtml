@@ -74,6 +74,7 @@
                 if (myNewChart) {
                     myNewChart.destroy();
                 }
+                var color = getRandomColor();
 
                 var dataT = {
                     labels: catNames,
@@ -81,12 +82,47 @@
                         label: "Sales",
                         data: totSales,
                         //fill: false,
-                        backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                        borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        //backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                        //borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        backgroundColor: color[0],
+                        borderColor: color[1], 
                         borderWidth: 1
                     }]
                 };
 
+                function getRandomColorArray(numberOfColors) {
+                    var colorArray = [];
+
+                    for (var i = 0; i < numberOfColors; i++) {
+                        colorArray.push(getRandomColor());
+                    }
+
+                    return colorArray;
+                }
+
+
+                /*function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }*/
+
+                function getRandomColor() {
+
+                    var color = []; 
+
+                    var r = Math.floor(Math.random() * 255);
+                    var g = Math.floor(Math.random() * 255);
+                    var b = Math.floor(Math.random() * 255);
+
+                    color[0] = "rgba(" + r + ", " + g + ", " + b + ", 0.4)"; 
+                    color[1] = "rgb(" + r + ", " + g + ", " + b + ")"; 
+
+                    return color;
+                }
 
 
                 var ctx = $("#myChart").get(0).getContext("2d");

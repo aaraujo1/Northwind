@@ -90,6 +90,8 @@
                                 totSales.push(data[i].TotalSales.toFixed(2));
                             }
 
+
+
                             createChart();
                             console.log(catNames);
                             console.log(totSales);
@@ -113,18 +115,47 @@
                     myNewChart.destroy();
                 }
 
+                var colorArray = getRandomColorArray(catNames.length);
+
                 var dataT = {
                     labels: catNames,
                     datasets: [{
                         //label: "Price",
                         data: totSales,
                         //fill: false,
-                        backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                        borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        //backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                        //borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        backgroundColor: colorArray[0],
+                        borderColor: colorArray[1],
                         borderWidth: 1
                     }]
                 };
 
+                function getRandomRgbColor() {
+
+                    var color = [];
+
+                    color[0] = Math.floor(Math.random() * 255);
+                    color[1] = Math.floor(Math.random() * 255);
+                    color[2] = Math.floor(Math.random() * 255);
+
+                    return color;
+                }
+
+
+                function getRandomColorArray(numberOfColors) {
+                    var colorArray = [[], []];
+
+                    for (var i = 0; i < numberOfColors; i++) {
+                        color = getRandomRgbColor();
+
+
+                        colorArray[0].push("rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ", 0.4)");
+                        colorArray[1].push("rgba(" + color[0] + ", " + color[1] + ", " + color[2] + ")");
+                    }
+
+                    return colorArray;
+                }
 
 
                 var ctx = $("#myChart").get(0).getContext("2d");
